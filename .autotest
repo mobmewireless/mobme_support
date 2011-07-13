@@ -1,0 +1,5 @@
+require 'autotest/bundler'
+
+Autotest.add_hook(:initialize) do |at|
+  at.add_exception %r{^./(.git|coverage)}
+end

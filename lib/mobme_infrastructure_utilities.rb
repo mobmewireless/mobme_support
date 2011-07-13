@@ -1,0 +1,1 @@
+require 'mobme_infrastructure_utilities/version'
