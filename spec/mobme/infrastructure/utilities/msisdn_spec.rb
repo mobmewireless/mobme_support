@@ -3,7 +3,7 @@ require 'bundler/setup'
 require 'rspec'
 require 'spec_helper'
 
-require 'mobme_infrastructure_utilities/msisdn'
+require 'mobme-infrastructure-utilities/msisdn'
 
 module MobME::Infrastructure::Utilities
 

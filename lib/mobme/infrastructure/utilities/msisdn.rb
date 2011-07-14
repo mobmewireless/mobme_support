@@ -1,5 +1,3 @@
-require 'mobme_infrastructure_utilities'
-
 module MobME::Infrastructure::Utilities
   module MSISDN
     def msisdn
