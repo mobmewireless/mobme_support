@@ -7,4 +7,5 @@ group :test do
   gem "simplecov"
   gem "simplecov-rcov"
   gem "rake"
+  gem "ci_reporter"
 end
