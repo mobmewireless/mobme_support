@@ -5,5 +5,6 @@ group :test do
   gem "autotest"
   gem "ZenTest"
   gem "simplecov"
+  gem "simplecov-rcov"
   gem "rake"
 end

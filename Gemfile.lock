@@ -17,6 +17,7 @@ GEM
     simplecov (0.4.2)
       simplecov-html (~> 0.4.4)
     simplecov-html (0.4.5)
+    simplecov-rcov (0.2.0)
 
 PLATFORMS
   ruby
@@ -27,3 +28,4 @@ DEPENDENCIES
   rake
   rspec
   simplecov
+  simplecov-rcov
