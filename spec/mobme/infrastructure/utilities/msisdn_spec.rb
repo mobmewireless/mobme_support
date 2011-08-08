@@ -1,6 +1,3 @@
-require 'bundler/setup'
-
-require 'rspec'
 require 'spec_helper'
 
 require 'mobme-infrastructure-utilities/msisdn'
