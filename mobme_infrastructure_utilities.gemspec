@@ -15,6 +15,14 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = ">= 1.3.6"
   s.add_development_dependency "rspec"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "guard"
+  s.add_development_dependency "guard-rspec"
+  s.add_development_dependency "simplecov"
+  s.add_development_dependency "flog"
+  s.add_development_dependency "yard"
+  s.add_development_dependency "ci_reporter"
+  s.add_development_dependency "simplecov-rcov"
 
   s.files              = `git ls-files`.split("\n") - ["Gemfile.lock", ".rvmrc"]
   s.test_files         = `git ls-files -- {spec}/*`.split("\n")
