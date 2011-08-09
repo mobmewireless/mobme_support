@@ -5,4 +5,3 @@ spec/reports
 *.log
 .yardoc
 *.gem
-Gemfile.lock
