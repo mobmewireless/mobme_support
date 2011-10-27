@@ -14,6 +14,10 @@ Gem::Specification.new do |s|
   s.description = %q{Utility is a collection of classes and standard library extensions extracted from across MobME projects, for great good.}
 
   s.required_rubygems_version = ">= 1.3.6"
+
+  s.add_dependency "i18n"
+  s.add_dependency "active_support"
+
   s.add_development_dependency "rspec"
   s.add_development_dependency "rake"
   s.add_development_dependency "guard"
