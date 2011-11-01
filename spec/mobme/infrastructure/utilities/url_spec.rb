@@ -21,6 +21,11 @@ module MobME::Infrastructure::Utilities
           "https://www.facebook.com".url.should == "https://www.facebook.com"
           "127.0.0.12".url.should == "http://127.0.0.12"
           "file:///home/mobme/test".url.should == "file:///home/mobme/test"
+          "scp://mobme@localhost:/home/mobme/test".url.should == "scp://mobme@localhost:/home/mobme/test"
+          "scp://mobme@localhost:~/test".url.should == "scp://mobme@localhost:~/test"
+          "scp://mobme@127.0.0.1:~/test".url.should == "scp://mobme@127.0.0.1:~/test"
+          "scp://mobme@somewhere.com:~/test".url.should == "scp://mobme@somewhere.com:~/test"
+          "scp://mobme@somewhere.ca:/home/mobme/test".url.should == "scp://mobme@somewhere.ca:/home/mobme/test"
         end
       end
 
@@ -30,6 +35,9 @@ module MobME::Infrastructure::Utilities
           "http//www.facebook.com".url.should == nil
           "127.0.0.1234".url.should == nil
           "file:/home/mobme/test".url.should == nil
+          "scp//mobme@localhost/test".url.should == nil
+          "scp://mobme:/test".url.should == nil
+          "scp://mobme@somewhere.c:/test".url.should == nil
         end
       end
     end

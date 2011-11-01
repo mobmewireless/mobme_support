@@ -15,7 +15,25 @@ module MobME::Infrastructure::Utilities
             fourth_match = reg.match(possible_url) ? "http://" + possible_url : nil
             unless fourth_match
               reg = /^file:\/\/(\/[a-z0-9_-]+)*\/([a-z0-9_-]+)+(\.([a-z0-9]+)+)?$/ix
-              reg.match(possible_url) ? possible_url : nil
+              fifth_match = reg.match(possible_url) ? possible_url : nil
+              unless fifth_match
+                reg = /^scp:\/\/[a-z0-9_-]+@[a-z0-9_-]+:~?(\/[a-z0-9_-]+)*\/([a-z0-9_-]+)+(\.([a-z0-9]+)+)?$/ix
+                sixth_match = reg.match(possible_url) ? possible_url : nil
+                unless sixth_match
+                  reg = /^scp:\/\/[a-z0-9_-]+@[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]:~?(\/[a-z0-9_-]+)*\/([a-z0-9_-]+)+(\.([a-z0-9]+)+)?$/ix
+                  seventh_match = reg.match(possible_url) ? possible_url : nil
+                  unless seventh_match
+                    reg = /^scp:\/\/[a-z0-9_-]+@[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}:~?(\/[a-z0-9_-]+)*\/([a-z0-9_-]+)+(\.([a-z0-9]+)+)?$/ix
+                    reg.match(possible_url) ? possible_url : nil
+                  else
+                    seventh_match
+                  end
+                else
+                  sixth_match
+                end
+              else
+                fifth_match
+              end
             else
               fourth_match
             end

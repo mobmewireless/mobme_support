@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mobme-infrastructure-utilities (0.2.1)
+    mobme-infrastructure-utilities (0.3.0)
       activesupport
       i18n
 
