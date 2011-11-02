@@ -15,3 +15,50 @@ $ bundle package
 * Deployment
 
 require 'mobme_infrastructure_utilities/<class / module name>'
+
+* Examples
+
+  * URL
+
+    require 'mobme_infrastructure_utilities/url'
+
+    "somewhere.com".url?
+     => true
+
+    "somewhere.com".url
+     => "http://somewhere.com"
+
+    "http://www.google.com".url?
+     => true
+
+    "file:///path/to/file.txt".url?
+     => true
+
+    "scp://mobme@server:/path/to/file".url?
+     => true
+
+  * MSISDN
+
+    # :country must be ISO 3166 code for required country. For example, India's ISO 3166 code is 'IN'. Default is 'IN'.
+    #   Current list of supported countries is IN, BH, and CA.
+
+    # :format must be one of 'local', 'country', 'plus_country', or 'international'. Default is 'local'.
+    #   example for 'local'         => '9876543210'
+    #   example for 'country'       => '919876543210'
+    #   example for 'plus_country'  => '+919876543210'
+    #   example for 'international' => '00919876543210'
+
+
+    require 'mobme_infrastructure_utilities/msisdn'
+
+    "9876543210".msisdn
+     => "9876543210"
+
+    "97376543210".msisdn?
+     => false
+
+    "97376543210".msisdn?(:country => 'BH')
+     => true
+
+    "2002001234".msisdn(:country => 'CA', :format => 'international')
+     => '01112002001234'
