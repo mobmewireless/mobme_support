@@ -1,4 +1,4 @@
-module MobME::Infrastructure::Utilities
+module MobME::Infrastructure::Utilities::CoreExtensions
   module MSISDN
     # In options, the key format can be one of 'local', 'country', 'plus_country', or 'international'.
     def msisdn(options_hash = {})
@@ -36,5 +36,5 @@ module MobME::Infrastructure::Utilities
 end
 
 class String
-  include MobME::Infrastructure::Utilities::MSISDN
+  include MobME::Infrastructure::Utilities::CoreExtensions::MSISDN
 end

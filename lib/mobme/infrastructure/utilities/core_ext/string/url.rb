@@ -1,4 +1,4 @@
-module MobME::Infrastructure::Utilities
+module MobME::Infrastructure::Utilities::CoreExtensions
   module URL
     def url
       possible_url = self.strip
@@ -55,5 +55,5 @@ module MobME::Infrastructure::Utilities
 end
 
 class String
-  include MobME::Infrastructure::Utilities::URL
+  include MobME::Infrastructure::Utilities::CoreExtensions::URL
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require 'mobme-infrastructure-utilities/msisdn'
+require 'mobme-infrastructure-utilities/core_ext/string/msisdn'
 
 module MobME::Infrastructure::Utilities
 

@@ -1,7 +1,10 @@
 module MobME
   module Infrastructure
     module Utilities
-      VERSION = '0.3.1'
+      VERSION = '1.0.0'
+
+      module CoreExtensions
+      end
     end
   end
 end
