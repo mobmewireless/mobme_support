@@ -1,5 +1,5 @@
 # Gems
-require 'active_support/core_ext'
+require 'active_support/core_ext/hash/keys'
 
 # Local
 require_relative '../../../mobme/infrastructure/utilities/version'
