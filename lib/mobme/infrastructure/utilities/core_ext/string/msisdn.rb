@@ -9,6 +9,7 @@ require 'active_support/core_ext/hash/reverse_merge'
 require_relative '../../version'
 
 module MobME::Infrastructure::Utilities::CoreExtensions
+  # String extension, which allows MSISDN validation
   module MSISDN
     # Validates and converts an MSISDN in the string to the required format
     #

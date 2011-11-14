@@ -2,6 +2,7 @@
 require_relative '../../version'
 
 module MobME::Infrastructure::Utilities::CoreExtensions
+  # String extension, which allows URL validation
   module URL
     # Validates and converts a URL to standard format (if applicable)
     #

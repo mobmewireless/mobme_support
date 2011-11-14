@@ -14,7 +14,7 @@ Then do:
 
 ## Deployment
 
-    require 'mobme_infrastructure_utilities/<class / module name>'
+    require 'mobme/infrastructure/utilities/<path>/<to>/<module>'
 
 ## Examples
 
