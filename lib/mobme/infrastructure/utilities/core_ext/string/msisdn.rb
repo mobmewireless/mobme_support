@@ -11,9 +11,11 @@ require_relative '../../version'
 module MobME::Infrastructure::Utilities::CoreExtensions
   module MSISDN
     # Validates and converts an MSISDN in the string to the required format
+    #
     # @param [Hash] options_hash Options to pass into the function
     # @option options_hash [String] :country The country code for the MSISDN
     # @option options_hash [String] :format Either 'local', 'international', 'country', 'plus_country'
+    # @return [String, nil] Validated MSISDN, or nil
     # @example Convert to an international format
     #   "9846819033".msisdn(:country => "IN", :format => 'international')
     #   "00919846819033"
@@ -48,6 +50,17 @@ module MobME::Infrastructure::Utilities::CoreExtensions
       end
     end
 
+    # Validates an MSISDN
+    #
+    # @param [Hash] options_hash Options to pass into the function
+    # @option options_hash [String] :country The country code for the MSISDN
+    # @return [Boolean] True if string is a valid MSISDN. False, otherwise
+    # @example Validate an Indian MSISDN
+    #   "9846819033".msisdn?
+    #   true
+    # @example Validate an non-Indian MSISDN
+    #   "+919846819033".msisdn?(:country => 'BH')
+    #   false
     def msisdn?(options_hash = {})
       msisdn(options_hash) ? true : false
     end
