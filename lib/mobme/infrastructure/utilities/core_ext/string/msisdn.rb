@@ -1,6 +1,15 @@
 module MobME::Infrastructure::Utilities::CoreExtensions
   module MSISDN
-    # In options, the key format can be one of 'local', 'country', 'plus_country', or 'international'.
+    # Validates and converts an MSISDN in the string to the required format
+    # @param [Hash] options_hash Options to pass into the function
+    # @option options_hash [String] :country The country code for the MSISDN
+    # @option options_hash [String] :format Either 'local', 'international', 'country', 'plus_country'
+    # @example Convert to an international format
+    #   "9846819033".msisdn(:country => "IN", :format => 'international')
+    #   "00919846819033"
+    # @example Convert to a 10 digit mobile number
+    #   "+919846819033".msisdn(:format => 'local')
+    #   "9846819033"
     def msisdn(options_hash = {})
       default_options = {
         :country => 'IN',

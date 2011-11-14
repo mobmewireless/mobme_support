@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "yard"
   s.add_development_dependency "ci_reporter"
   s.add_development_dependency "simplecov-rcov"
+  s.add_development_dependency "rdiscount"
 
   s.files              = `git ls-files`.split("\n") - ["Gemfile.lock", ".rvmrc"]
   s.test_files         = `git ls-files -- {spec}/*`.split("\n")
