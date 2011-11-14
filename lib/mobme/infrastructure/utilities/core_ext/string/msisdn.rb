@@ -1,3 +1,13 @@
+# Standard
+require 'yaml'
+
+# Gems
+require 'active_support/core_ext/hash/keys'
+require 'active_support/core_ext/hash/reverse_merge'
+
+# Local
+require_relative '../../version'
+
 module MobME::Infrastructure::Utilities::CoreExtensions
   module MSISDN
     # Validates and converts an MSISDN in the string to the required format

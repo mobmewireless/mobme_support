@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require 'mobme-infrastructure-utilities/core_ext/string/url'
+require 'mobme/infrastructure/utilities/core_ext/string/url'
 
 module MobME::Infrastructure::Utilities
 

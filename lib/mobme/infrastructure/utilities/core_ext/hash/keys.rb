@@ -1,3 +1,9 @@
+# Gems
+require 'active_support/core_ext/hash/keys'
+
+# Local
+require_relative '../../version'
+
 module MobME::Infrastructure::Utilities::CoreExtensions
   module Keys
     def recursive_symbolize_keys!

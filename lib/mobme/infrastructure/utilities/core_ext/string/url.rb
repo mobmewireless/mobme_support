@@ -1,3 +1,6 @@
+# Local
+require_relative '../../version'
+
 module MobME::Infrastructure::Utilities::CoreExtensions
   module URL
     def url

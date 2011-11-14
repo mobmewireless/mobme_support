@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require 'mobme-infrastructure-utilities/core_ext/hash'
+require 'mobme/infrastructure/utilities/core_ext/hash'
 
 module MobME::Infrastructure::Utilities::CoreExtensions
   describe "Hash" do
