@@ -9,18 +9,19 @@ require 'active_support/core_ext/hash/reverse_merge'
 require_relative '../../version'
 
 module MobME::Infrastructure::Utilities::CoreExtensions
-  # String extension, which allows MSISDN validation
+  # String extension, which allows MSISDN validation.
   module MSISDN
-    # Validates and converts an MSISDN in the string to the required format
+
+    # Validates and converts an MSISDN in the string to the required format.
     #
     # @param [Hash] options_hash Options to pass into the function
-    # @option options_hash [String] :country The country code for the MSISDN
-    # @option options_hash [String] :format Either 'local', 'international', 'country', 'plus_country'
-    # @return [String, nil] Validated MSISDN, or nil
-    # @example Convert to an international format
-    #   "9846819033".msisdn(:country => "IN", :format => 'international')
-    #   "00919846819033"
-    # @example Convert to a 10 digit mobile number
+    # @option options_hash [String] :country ('IN') The ISO 3166 code for the MSISDN's country.
+    # @option options_hash [String] :format ('local') Either 'local', 'international', 'country', 'plus_country'.
+    # @return [String, nil] Validated MSISDN, or nil.
+    # @example Convert to an international format.
+    #   "31234567".msisdn(:country => "BH", :format => 'international')
+    #   "0097331234567"
+    # @example Convert to a 10 digit mobile number.
     #   "+919846819033".msisdn(:format => 'local')
     #   "9846819033"
     def msisdn(options_hash = {})
@@ -51,16 +52,16 @@ module MobME::Infrastructure::Utilities::CoreExtensions
       end
     end
 
-    # Validates an MSISDN
+    # Validates an MSISDN.
     #
-    # @param [Hash] options_hash Options to pass into the function
-    # @option options_hash [String] :country The country code for the MSISDN
-    # @return [Boolean] True if string is a valid MSISDN. False, otherwise
-    # @example Validate an Indian MSISDN
+    # @param [Hash] options_hash Options to pass into the function.
+    # @option options_hash [String] :country ('IN') The ISO 3166 code for the MSISDN's country.
+    # @return [Boolean] True if string is a valid MSISDN. False, otherwise.
+    # @example Validate an Indian MSISDN.
     #   "9846819033".msisdn?
     #   true
-    # @example Validate an non-Indian MSISDN
-    #   "+919846819033".msisdn?(:country => 'BH')
+    # @example Validate an non-Indian MSISDN.
+    #   "+919846819033".msisdn?(:country => 'CA')
     #   false
     def msisdn?(options_hash = {})
       msisdn(options_hash) ? true : false
