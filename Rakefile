@@ -1,11 +1,13 @@
 require 'rspec/core/rake_task'
 require "rake/tasklib"
 require "flog"
-require 'ci/reporter/rake/rspec'
+#require 'ci/reporter/rake/rspec'
+#
+#RSpec::Core::RakeTask.new(:spec => ["ci:setup:rspec"]) do |t|
+#  t.pattern = 'spec/**/*_spec.rb'
+#end
 
-RSpec::Core::RakeTask.new(:spec => ["ci:setup:rspec"]) do |t|
-  t.pattern = 'spec/**/*_spec.rb'
-end
+RSpec::Core::RakeTask.new(:spec)
 
 task :default => :spec
 
