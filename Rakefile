@@ -37,7 +37,7 @@ namespace :gem do
     puts "Pushing up gem to gems.mobme.in..."
     system("scp -P 2200 *.gem mobme@gems.mobme.in:/home/mobme/public_html/gems.mobme.in/gems")
     puts "Rebuilding index..."
-    system('ssh mobme@gems.mobme.in -p 2200 "cd /home/mobme/public_html/gems.mobme.in && /usr/local/rvm/bin/rvm 1.9.2 gem generate_index"')
+    system('ssh mobme@gems.mobme.in -p 2200 "cd /home/mobme/public_html/gems.mobme.in && /usr/local/rvm/bin/rvm 1.9.2 do gem generate_index"')
     puts "Done"
   end
 end
