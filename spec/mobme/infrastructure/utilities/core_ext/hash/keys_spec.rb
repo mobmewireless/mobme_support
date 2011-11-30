@@ -30,10 +30,20 @@ module MobME::Infrastructure::Utilities::CoreExtensions
         {"foo" => "bar"}.recursively_symbolize_keys!.should == {:foo => "bar"}
       end
 
-      it "recursively symbolizes nested Hashes even if they are nested inside an Array" do
-        with_hash_inside_array = {"foo" => {"bar" => [{"baz" => "qux"}]}}
-        with_hash_inside_array.recursively_symbolize_keys!
-        with_hash_inside_array.should == {:foo => {:bar => [{:baz => "qux"}]}}
+      context "when the modify_nested_arrays flag is set to true" do
+        it "recursively symbolizes nested Hashes if they are nested inside an Array" do
+          with_hash_inside_array = {"foo" => {"bar" => [{"baz" => "qux"}]}}
+          with_hash_inside_array.recursively_symbolize_keys!(true)
+          with_hash_inside_array.should == {:foo => {:bar => [{:baz => "qux"}]}}
+        end
+      end
+
+      context "when the modify_nested_arrays flag is not set" do
+        it "does not recursively symbolize nested Hashes if they are nested inside an Array" do
+          with_hash_inside_array = {"foo" => {"bar" => [{"baz" => "qux"}]}}
+          with_hash_inside_array.recursively_symbolize_keys!
+          with_hash_inside_array.should == {:foo => {:bar => [{"baz" => "qux"}]}}
+        end
       end
     end
   end

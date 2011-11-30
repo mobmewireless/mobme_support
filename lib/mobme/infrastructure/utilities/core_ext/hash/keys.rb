@@ -8,12 +8,16 @@ module MobME::Infrastructure::Utilities::CoreExtensions
   # Hash extension, allowing recursive Hash key symbolization
   module Keys
     # Recursively symbolize all keys in the hash.
-    def recursively_symbolize_keys!
+    def recursively_symbolize_keys!(modify_nested_arrays = false)
       if self.is_a?(Hash)
         self.symbolize_keys!
-        self.values.select {|v| v.is_a?(Hash) || v.is_a?(Array) }.map!(&:recursively_symbolize_keys!)
+        self.values.select do |v|
+          v.is_a?(Hash) || (modify_nested_arrays && v.is_a?(Array))
+        end.map! { |o| o.recursively_symbolize_keys!(modify_nested_arrays) }
       elsif self.is_a?(Array)
-        self.select {|v| v.is_a?(Hash) || v.is_a?(Array) }.map!(&:recursively_symbolize_keys!)
+        self.select do |v|
+          v.is_a?(Hash) || (modify_nested_arrays && v.is_a?(Array))
+        end.map! { |o| o.recursively_symbolize_keys!(modify_nested_arrays) }
       end
       self
     end
