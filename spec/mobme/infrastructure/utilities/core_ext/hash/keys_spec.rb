@@ -11,6 +11,10 @@ module MobME::Infrastructure::Utilities::CoreExtensions
 
       it { should == {:foo => {:bar => "baz"}, :already_symbol => "far", 123 => "faz"} }
 
+      it "returns the recursively symbolized hash" do
+        {"foo" => "bar"}.recursively_symbolize_keys!.should == {:foo => "bar"}
+      end
+
       context "when the modify_nested_arrays flag is set to true" do
         it "recursively symbolizes nested Hashes if they are nested inside an Array" do
           with_hash_inside_array = {"foo" => {"bar" => [{"baz" => [{"qux" => "qar"}, "string"]}]}}
