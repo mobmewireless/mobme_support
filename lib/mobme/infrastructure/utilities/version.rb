@@ -4,7 +4,7 @@ module MobME
     # code.
     module Utilities
       # Version string.
-      VERSION = '2.2.1'
+      VERSION = '2.2.2'
 
       # Extensions to core Ruby classes.
       module CoreExtensions
