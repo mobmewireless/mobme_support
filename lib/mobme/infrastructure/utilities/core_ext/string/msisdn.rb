@@ -32,7 +32,8 @@ module MobME::Infrastructure::Utilities::CoreExtensions
 
       options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
 
-      msisdn_format = YAML.load_file(File.dirname(__FILE__) + "/msisdn_formats.yml")[options_hash[:country]]
+      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + "/msisdn_formats.yml")
+      msisdn_format = @@msdn_format_data[options_hash[:country]]
 
       msisdn = self.strip
       if msisdn.match(msisdn_format['regexp'])
