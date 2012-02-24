@@ -4,9 +4,9 @@ MobME Support is a collection of classes and standard library extensions extract
 
 ## Install
 
-  $ gem install mobme_support
+    $ gem install mobme_support
 
 ## Documentation
 
-  $ rake yardoc:generate
-  $ ls yardoc/
+    $ rake yardoc:generate
+    $ ls yardoc/
