@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require 'mobme/infrastructure/utilities/file/msisdn_filter'
 
-module MobME::Infrastructure::Utilities::FileOperations
+module MobMESupport::FileOperations
   describe "MSISDNFilter" do
     subject { MSISDNFilter }
 

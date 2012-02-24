@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["MobME"]
   s.email       = ["engineering@mobme.in"]
-  s.homepage    = "http://mobme.in/"
-  s.summary     = %q{Utility classes and standard library extensions shared across projects, brought under one roof.}
-  s.description = %q{Utility is a collection of classes and standard library extensions extracted from across MobME projects, for great good.}
+  s.homepage    = "http://42.mobme.in/"
+  s.summary     = %q{MobME Support are classes and standard library extensions shared across projects, brought under one roof.}
+  s.description = %q{MobME Support is a collection of classes and standard library extensions extracted from across MobME projects & for great good. Ala ActiveSupport!}
 
   s.required_rubygems_version = ">= 1.3.6"
 

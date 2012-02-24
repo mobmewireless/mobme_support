@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require 'mobme/infrastructure/utilities/core_ext/string/msisdn'
 
-module MobME::Infrastructure::Utilities
+module MobMESupport
 
   describe 'MSISDN' do
     subject { '9946759680' }

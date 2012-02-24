@@ -16,3 +16,6 @@ module MobME
     end
   end
 end
+
+# Alias it!
+MobMESupport = MobME::Infrastructure::Utilities

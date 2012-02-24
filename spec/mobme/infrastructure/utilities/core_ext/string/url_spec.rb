@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require 'mobme/infrastructure/utilities/core_ext/string/url'
 
-module MobME::Infrastructure::Utilities
+module MobMESupport
 
   describe 'URL' do
     subject { 'http://www.google.com' }

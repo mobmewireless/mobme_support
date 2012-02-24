@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require 'mobme/infrastructure/utilities/core_ext/hash'
 
-module MobME::Infrastructure::Utilities::CoreExtensions
+module MobMESupport::CoreExtensions
   describe "Hash" do
     subject { {"foo" => {"bar" => "baz"}, :already_symbol => "far", 123 => "faz"} }
 

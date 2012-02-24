@@ -1,22 +1,12 @@
 ## Description
 
-Utility is a collection of classes and standard library extensions extracted from across MobME projects, for great good.
+MobME Support is a collection of classes and standard library extensions extracted from across MobME projects & for great good. Ala ActiveSupport!
 
 ## Install
 
-Install rvm and ruby-1.9.2
+  $ gem install mobme_support
 
-Then do:
+## Documentation
 
-    $ gem install bundler
-    $ bundle install --path vendor
-    $ bundle package
-
-## Deployment
-
-    require 'mobme/infrastructure/utilities/<path>/<to>/<module>'
-
-## Examples
-
-  Refer this gem's [wiki](http://wiki.mobme.in/doku.php?id=mobme-infrastructure-utilities) page for usage, and examples.
-
+  $ rake yardoc:generate
+  $ ls yardoc/
