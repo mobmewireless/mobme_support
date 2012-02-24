@@ -4,6 +4,9 @@
 
 ## CHANGES
 
+### 20120224 (vishnu@mobme.in)
+* MobMESupport, & not retaining older versions.
+
 ### 20120122 (vishnu@mobme.in)
 * Tweaks to cache YML data
 

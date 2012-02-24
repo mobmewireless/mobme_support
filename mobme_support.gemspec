@@ -1,10 +1,10 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
-require 'mobme/infrastructure/utilities/version'
+require 'mobme_support/version'
 
 Gem::Specification.new do |s|
-  s.name        = "mobme-infrastructure-utilities"
+  s.name        = "mobme_support"
   s.version     = MobME::Infrastructure::Utilities::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["MobME"]

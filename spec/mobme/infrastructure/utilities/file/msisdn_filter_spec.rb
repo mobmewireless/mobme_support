@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require 'mobme/infrastructure/utilities/file/msisdn_filter'
+require 'mobme_support/file/msisdn_filter'
 
 module MobMESupport::FileOperations
   describe "MSISDNFilter" do
