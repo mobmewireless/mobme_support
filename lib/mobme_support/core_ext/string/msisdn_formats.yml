@@ -40,7 +40,7 @@ CA:
   local_digits: 10
   international_prefix: "011"
 AE:
-  regexp: !ruby/regexp '/^(\+|00)?(971)?((50|55|56)[0-9]{7})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(971)?(5(0|5|6)[0-9]{7})$/'
   country_code: "971"
   local_digits: 7
   international_prefix: "00"
