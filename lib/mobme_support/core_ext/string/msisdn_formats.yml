@@ -42,5 +42,5 @@ CA:
 AE:
   regexp: !ruby/regexp '/^(\+|00)?(971)?(5(0|5|6)[0-9]{7})$/'
   country_code: "971"
-  local_digits: 7
+  local_digits: 9
   international_prefix: "00"
