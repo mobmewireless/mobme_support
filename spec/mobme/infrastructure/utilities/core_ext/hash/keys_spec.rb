@@ -6,28 +6,27 @@ module MobMESupport::CoreExtensions
   describe "Hash" do
     subject { {"foo" => {"bar" => "baz"}, :already_symbol => "far", 123 => "faz"} }
 
-    describe "#recursively_symbolize_keys!" do
-      before(:each) { subject.recursively_symbolize_keys! }
+    describe "recursively_symbolize_keys" do
+      it "returns a recursilvely symbolized version of the value" do
+        subject.recursively_symbolize_keys.should == {:foo => {:bar => "baz"}, :already_symbol => "far", 123 => "faz"}
+      end
 
-      it { should == {:foo => {:bar => "baz"}, :already_symbol => "far", 123 => "faz"} }
-
-      it "returns the recursively symbolized hash" do
-        {"foo" => "bar"}.recursively_symbolize_keys!.should == {:foo => "bar"}
+      it "does not alter the original object" do
+        subject.recursively_symbolize_keys
+        subject.should == {"foo" => {"bar" => "baz"}, :already_symbol => "far", 123 => "faz"}
       end
 
       context "when the modify_nested_arrays flag is set to true" do
         it "recursively symbolizes nested Hashes if they are nested inside an Array" do
           with_hash_inside_array = {"foo" => {"bar" => [{"baz" => [{"qux" => "qar"}, "string"]}]}}
-          with_hash_inside_array.recursively_symbolize_keys!(true)
-          with_hash_inside_array.should == {:foo => {:bar => [{:baz => [{:qux => "qar"}, "string"]}]}}
+          with_hash_inside_array.recursively_symbolize_keys(true).should == {:foo => {:bar => [{:baz => [{:qux => "qar"}, "string"]}]}}
         end
       end
 
       context "when the modify_nested_arrays flag is not set" do
         it "does not recursively symbolize nested Hashes if they are nested inside an Array" do
           with_hash_inside_array = {"foo" => {"bar" => [{"baz" => "qux"}]}}
-          with_hash_inside_array.recursively_symbolize_keys!
-          with_hash_inside_array.should == {:foo => {:bar => [{"baz" => "qux"}]}}
+          with_hash_inside_array.recursively_symbolize_keys.should == {:foo => {:bar => [{"baz" => "qux"}]}}
         end
       end
 
@@ -37,11 +36,26 @@ module MobMESupport::CoreExtensions
           sample_hash = {"far" => "bar"}
           hash_to_symbolize = {"array" => sample_array, "hash" => sample_hash}
 
-          hash_to_symbolize.recursively_symbolize_keys!(true)
+          hash_to_symbolize.recursively_symbolize_keys(true)
 
           sample_array.should == [{"foo" => "bar"}]
           sample_hash.should == {"far" => "bar"}
         end
+      end
+    end
+
+    describe "#recursively_symbolize_keys!" do
+      it "replaces itself with the recursively symbolized version" do
+        replacement_object = double "Replacement"
+        subject.stub recursively_symbolize_keys: replacement_object
+        subject.should_receive(:replace).with(replacement_object)
+        subject.recursively_symbolize_keys!
+      end
+    end
+
+    describe "#recursive_symbolize_keys" do
+      it "is an alias for #recursively_symbolize_keys" do
+        subject.method(:recursive_symbolize_keys).should == subject.method(:recursively_symbolize_keys)
       end
     end
 
@@ -53,11 +67,20 @@ module MobMESupport::CoreExtensions
   end
 
   describe "Array" do
-    describe "#recursively_symbolize_keys!" do
+    subject { [{"foo" => "bar"}, {"baz" => "qux"}] }
+
+    describe "#recursively_symbolize_keys" do
       it "recursively symbolizes Hash values in the array" do
-        array_with_hash_values = [{"foo" => "bar"}, {"baz" => "qux"}]
-        array_with_hash_values.recursively_symbolize_keys!
-        array_with_hash_values.should == [{:foo => "bar"}, {:baz => "qux"}]
+        subject.recursively_symbolize_keys.should == [{:foo => "bar"}, {:baz => "qux"}]
+      end
+    end
+
+    describe "#recursively_symbolize_keys!" do
+      it "replaces itself with the recursively symbolized version" do
+        replacement_object = double "Replacement"
+        subject.stub recursively_symbolize_keys: replacement_object
+        subject.should_receive(:replace).with(replacement_object)
+        subject.recursively_symbolize_keys!
       end
     end
   end
