@@ -7,24 +7,43 @@ require_relative '../../version'
 module MobME::Infrastructure::Utilities::CoreExtensions
   # Hash extension, allowing recursive Hash key symbolization
   module Keys
-    # Recursively symbolize all keys in the hash.
-    def recursively_symbolize_keys!(modify_nested_arrays = false)
-      case self
-      when Hash
-        symbolize_keys!
+    # Returns a version of the supplies Hash or Array with all Hash keys symbolized.
+    #
+    # @param [Boolean] modify_nested_arrays set to true to iterate over array contents. Defaults to false.
+    # @return [Hash, Array] recursively symbolized Array or Hash
+    def recursively_symbolize_keys(modify_nested_arrays = false)
+      recursively_symbolized_value = case self
+        when Hash
+          symbolized_hash = symbolize_keys
 
-        each do |key, value|
-          if value.is_a?(Hash) || (modify_nested_arrays && value.is_a?(Array))
-            self[key] = value.dup.recursively_symbolize_keys!(modify_nested_arrays)
+          symbolized_hash.each do |key, value|
+            if value.is_a?(Hash) || (modify_nested_arrays && value.is_a?(Array))
+              symbolized_hash[key] = value.recursively_symbolize_keys(modify_nested_arrays)
+            end
           end
-        end
-      when Array
-        each_with_index do |value, index|
-          self[index] = value.dup.recursively_symbolize_keys!(true) if (value.is_a?(Hash) || value.is_a?(Array))
-        end
+
+          symbolized_hash
+        when Array
+          symbolized_array = self.dup
+
+          symbolized_array.each_with_index do |value, index|
+            symbolized_array[index] = value.recursively_symbolize_keys(true) if (value.is_a?(Hash) || value.is_a?(Array))
+          end
+
+          symbolized_array
       end
 
-      self
+      recursively_symbolized_value
+    end
+
+    alias_method :recursive_symbolize_keys, :recursively_symbolize_keys
+
+    # Recursively symbolize all keys in hashes.
+    #
+    # @param [Boolean] modify_nested_arrays set to true to modify array contents. Defaults to false.
+    # @return [Hash, Array] recursively symbolized Array or Hash
+    def recursively_symbolize_keys!(modify_nested_arrays = false)
+      replace recursively_symbolize_keys(modify_nested_arrays)
     end
 
     alias_method :recursive_symbolize_keys!, :recursively_symbolize_keys!
