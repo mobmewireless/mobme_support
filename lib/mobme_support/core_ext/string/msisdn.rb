@@ -72,7 +72,8 @@ module MobME::Infrastructure::Utilities::CoreExtensions
       options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
       @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + "/msisdn_formats.yml")
       msisdn_format = @@msdn_format_data[options_hash[:country]]
-      self =~ msisdn_format['regexp']
+     return false unless self =~ msisdn_format['regexp']
+      true
     end
   end
 end
