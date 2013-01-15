@@ -53,31 +53,21 @@ module MobMESupport
     end
 
     describe "#msisdn?" do
-      it "calls #msisdn" do
-        subject.should_receive(:msisdn)
-        subject.msisdn?
-      end
 
-      context "if #msisdn returns anything" do
+      context "should return true for valid msisdn" do
         it "returns true" do
-          subject.stub(:msisdn).and_return('9946759680')
-          subject.msisdn?.should == true
+          '9946759680'.msisdn?.should == true
         end
       end
 
-      context "if #msisdn returns nothing" do
+      context "should return false for invalid msisdn" do
         it "returns false" do
-          subject.stub(:msisdn).and_return(nil)
-          subject.msisdn?.should == false
+          "".msisdn?.should == false
         end
       end
 
       context "when passed custom options" do
-        it "passes them onto msisdn" do
-          mock_options = double("Options Hash")
-          subject.should_receive(:msisdn).with(mock_options)
-          subject.msisdn?(mock_options)
-        end
+        pending
       end
     end
   end
