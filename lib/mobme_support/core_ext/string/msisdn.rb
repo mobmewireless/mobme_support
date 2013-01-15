@@ -65,7 +65,14 @@ module MobME::Infrastructure::Utilities::CoreExtensions
     #   "+919846819033".msisdn?(:country => 'CA')
     #   false
     def msisdn?(options_hash = {})
-      msisdn(options_hash) ? true : false
+      default_options = {
+          :country => 'IN',
+          :format => 'local'
+      }
+      options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
+      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + "/msisdn_formats.yml")
+      msisdn_format = @@msdn_format_data[options_hash[:country]]
+      self =~ msisdn_format['regexp']
     end
   end
 end
