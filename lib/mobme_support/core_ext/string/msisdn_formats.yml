@@ -44,3 +44,13 @@ AE:
   country_code: "971"
   local_digits: 9
   international_prefix: "00"
+FI:
+  regexp: !ruby/regexp '/^(\+|00)?(358)?((4|5)[0-9]{8})$/'
+  country_code: "358"
+  local_digits: 9
+  international_prefix: "00"
+IS:
+  regexp: !ruby/regexp '/^(\+|00)?(354)?((6|7|8)[0-9]{6})$/'
+  country_code: "354"
+  local_digits: 9
+  international_prefix: "00"
