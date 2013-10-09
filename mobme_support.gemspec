@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard'
   s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'flog'
+  s.add_development_dependency 'metric_fu'
   s.add_development_dependency 'yard'
   s.add_development_dependency 'ci_reporter'
   s.add_development_dependency 'simplecov-rcov'
