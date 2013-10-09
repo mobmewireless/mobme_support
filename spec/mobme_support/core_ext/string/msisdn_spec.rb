@@ -1,8 +1,8 @@
-require 'spec_helper'
+require_relative '../../../spec_helper'
 
 require 'mobme_support/core_ext/string/msisdn'
 
-module MobMESupport
+module MobmeSupport
 
   describe 'MSISDN' do
     subject { '9946759680' }

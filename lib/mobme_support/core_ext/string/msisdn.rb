@@ -8,7 +8,7 @@ require 'active_support/core_ext/hash/reverse_merge'
 # Local
 require_relative '../../version'
 
-module MobME::Infrastructure::Utilities::CoreExtensions
+module MobmeSupport::CoreExtensions
   # String extension, which allows MSISDN validation.
   module MSISDN
 
@@ -32,7 +32,7 @@ module MobME::Infrastructure::Utilities::CoreExtensions
 
       options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
 
-      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + "/msisdn_formats.yml")
+      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + '/msisdn_formats.yml')
       msisdn_format = @@msdn_format_data[options_hash[:country]]
 
       msisdn = self.strip
@@ -45,7 +45,7 @@ module MobME::Infrastructure::Utilities::CoreExtensions
             "#{msisdn_format['country_code']}#{local_segment}"
           when 'plus_country'
             "+#{msisdn_format['country_code']}#{local_segment}"
-          when "international"
+          when 'international'
             "#{msisdn_format['international_prefix']}#{msisdn_format['country_code']}#{local_segment}"
         end
       else
@@ -70,7 +70,7 @@ module MobME::Infrastructure::Utilities::CoreExtensions
           :format => 'local'
       }
       options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
-      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + "/msisdn_formats.yml")
+      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + '/msisdn_formats.yml')
       msisdn_format = @@msdn_format_data[options_hash[:country]]
      return false unless self =~ msisdn_format['regexp']
       true
@@ -79,5 +79,5 @@ module MobME::Infrastructure::Utilities::CoreExtensions
 end
 
 class String
-  include MobME::Infrastructure::Utilities::CoreExtensions::MSISDN
+  include MobmeSupport::CoreExtensions::MSISDN
 end

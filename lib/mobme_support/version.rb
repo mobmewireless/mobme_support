@@ -1,21 +1,16 @@
-module MobME
-  module Infrastructure
-    # Collection of classes and standard library extensions extracted from across MobME projects, which serves to avoid re-writing often-used
-    # code.
-    module Utilities
-      # Version string.
-      VERSION = '2.3.1'
-
-      # Extensions to core Ruby classes.
-      module CoreExtensions
-      end
-
-      # Operations on files.
-      module FileOperations
-      end
-    end
+# MobME Support library
+#
+# A collection of classes and standard library extensions extracted from across MobME projects, which serves to avoid
+# re-writing often-used code.
+module MobmeSupport
+  # Gem Version
+  def self.version
+    Gem::Version.new '3.0.0'
   end
-end
 
-# Alias it!
-MobMESupport = MobME::Infrastructure::Utilities
+  # Operations on files.
+  module FileOperations end
+
+  # Extensions to core Ruby classes.
+  module CoreExtensions end
+end

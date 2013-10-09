@@ -1,8 +1,8 @@
-require 'spec_helper'
+require_relative '../../spec_helper'
 
 require 'mobme_support/file/msisdn_filter'
 
-module MobMESupport::FileOperations
+module MobmeSupport::FileOperations
   describe "MSISDNFilter" do
     subject { MSISDNFilter }
 

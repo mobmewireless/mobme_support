@@ -2,7 +2,7 @@ require_relative '../version'
 require_relative '../core_ext/hash/keys'
 require 'active_support/core_ext/hash/reverse_merge'
 
-module MobME::Infrastructure::Utilities::FileOperations
+module MobmeSupport::FileOperations
   # Filters for MSISDN-s in files.
   class MSISDNFilter
     class << self
@@ -29,13 +29,13 @@ module MobME::Infrastructure::Utilities::FileOperations
         input_file_contents = get_file_contents(file_path)
         input_file_contents.scan(pattern(options_hash)).map do |match|
           case options_hash[:format]
-            when "local"
+            when 'local'
               match[2]
-            when "country"
+            when 'country'
               settings[options_hash[:country]]['country_code'] + match[2]
-            when "plus_country"
+            when 'plus_country'
               "+#{settings[options_hash[:country]]['country_code']}#{match[2]}"
-            when "international"
+            when 'international'
               settings[options_hash[:country]]['international_prefix'] + settings[options_hash[:country]]['country_code'] + match[2]
             else
               raise "Invalid :format value - must be one of 'local', 'country', 'plus_country', or 'international'."
@@ -58,7 +58,7 @@ module MobME::Infrastructure::Utilities::FileOperations
       def settings
         return @settings_hash unless @settings_hash.nil?
 
-        settings_file = File.open(File.dirname(File.expand_path(__FILE__)) + "/../core_ext/string/msisdn_formats.yml", 'r')
+        settings_file = File.open(File.dirname(File.expand_path(__FILE__)) + '/../core_ext/string/msisdn_formats.yml', 'r')
         settings_hash = YAML.load(settings_file)
         settings_file.close
         @settings_hash = settings_hash

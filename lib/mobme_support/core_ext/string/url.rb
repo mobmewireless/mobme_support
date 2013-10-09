@@ -1,7 +1,7 @@
 # Local
 require_relative '../../version'
 
-module MobME::Infrastructure::Utilities::CoreExtensions
+module MobmeSupport::CoreExtensions
   # String extension, which allows URL validation
   module URL
     # Validates and converts a URL to standard format (if applicable)
@@ -25,13 +25,13 @@ module MobME::Infrastructure::Utilities::CoreExtensions
       first_match = reg.match(possible_url) ? possible_url : nil
       unless first_match
         reg = /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
-        second_match = reg.match(possible_url) ? "http://" + possible_url : nil
+        second_match = reg.match(possible_url) ? 'http://' + possible_url : nil
         unless second_match
           reg = /^(http|https):\/\/[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9](\/.*)?$/ix
           third_match = reg.match(possible_url) ? possible_url : nil
           unless third_match
             reg = /^[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9]\.[12]?[0-9]?[0-9](\/.*)?$/ix
-            fourth_match = reg.match(possible_url) ? "http://" + possible_url : nil
+            fourth_match = reg.match(possible_url) ? 'http://' + possible_url : nil
             unless fourth_match
               reg = /^file:\/\/(\/[a-z0-9_-]+)*\/([a-z0-9_-]+)+(\.([a-z0-9]+)+)?$/ix
               fifth_match = reg.match(possible_url) ? possible_url : nil
@@ -86,5 +86,5 @@ module MobME::Infrastructure::Utilities::CoreExtensions
 end
 
 class String
-  include MobME::Infrastructure::Utilities::CoreExtensions::URL
+  include MobmeSupport::CoreExtensions::URL
 end

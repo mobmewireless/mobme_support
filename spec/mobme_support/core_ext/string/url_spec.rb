@@ -1,8 +1,8 @@
-require 'spec_helper'
+require_relative '../../../spec_helper'
 
 require 'mobme_support/core_ext/string/url'
 
-module MobMESupport
+module MobmeSupport
 
   describe 'URL' do
     subject { 'http://www.google.com' }

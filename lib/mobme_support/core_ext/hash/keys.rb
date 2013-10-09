@@ -4,7 +4,7 @@ require 'active_support/core_ext/hash/keys'
 # Local
 require_relative '../../version'
 
-module MobME::Infrastructure::Utilities::CoreExtensions
+module MobmeSupport::CoreExtensions
   # Hash extension, allowing recursive Hash key symbolization
   module Keys
     # Returns a version of the supplies Hash or Array with all Hash keys symbolized.
@@ -12,7 +12,7 @@ module MobME::Infrastructure::Utilities::CoreExtensions
     # @param [Boolean] modify_nested_arrays set to true to iterate over array contents. Defaults to false.
     # @return [Hash, Array] recursively symbolized Array or Hash
     def recursively_symbolize_keys(modify_nested_arrays = false)
-      recursively_symbolized_value = case self
+      case self
         when Hash
           symbolized_hash = symbolize_keys
 
@@ -32,8 +32,6 @@ module MobME::Infrastructure::Utilities::CoreExtensions
 
           symbolized_array
       end
-
-      recursively_symbolized_value
     end
 
     alias_method :recursive_symbolize_keys, :recursively_symbolize_keys
@@ -51,9 +49,9 @@ module MobME::Infrastructure::Utilities::CoreExtensions
 end
 
 class Hash
-  include MobME::Infrastructure::Utilities::CoreExtensions::Keys
+  include MobmeSupport::CoreExtensions::Keys
 end
 
 class Array
-  include MobME::Infrastructure::Utilities::CoreExtensions::Keys
+  include MobmeSupport::CoreExtensions::Keys
 end
