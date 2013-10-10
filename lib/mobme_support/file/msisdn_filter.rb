@@ -1,5 +1,7 @@
 require_relative '../version'
 require_relative '../core_ext/hash/keys'
+require_relative '../core_ext/string/msisdn'
+
 require 'active_support/core_ext/hash/reverse_merge'
 
 module MobmeSupport::FileOperations
@@ -27,21 +29,11 @@ module MobmeSupport::FileOperations
         })
 
         input_file_contents = get_file_contents(file_path)
-        input_file_contents.scan(pattern(options_hash)).map do |match|
-          case options_hash[:format]
-            when 'local'
-              match[2]
-            when 'country'
-              settings[options_hash[:country]]['country_code'] + match[2]
-            when 'plus_country'
-              "+#{settings[options_hash[:country]]['country_code']}#{match[2]}"
-            when 'international'
-              settings[options_hash[:country]]['international_prefix'] + settings[options_hash[:country]]['country_code'] + match[2]
-            else
-              raise "Invalid :format value - must be one of 'local', 'country', 'plus_country', or 'international'."
-          end
 
-        end
+        input_file_contents.inject([]) do |result, element|
+          result << element.msisdn(options_hash)
+          result
+        end - [nil]
       end
 
       private
@@ -51,7 +43,7 @@ module MobmeSupport::FileOperations
         input_file = File.open(file_path, 'r')
         input_file_contents = input_file.read
         input_file.close
-        input_file_contents
+        input_file_contents.split("\n")
       end
 
       # Returns cached settings, if possible. Otherwise loads them from file.
