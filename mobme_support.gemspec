@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{MobME Support are classes and standard library extensions shared across projects, brought under one roof.}
   s.description = %q{MobME Support is a collection of classes and standard library extensions extracted from across MobME projects & for great good. Ala ActiveSupport!}
 
-  s.add_dependency 'activesupport'
+  s.add_dependency 'activesupport', '>= 4.0.0'
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rake'
