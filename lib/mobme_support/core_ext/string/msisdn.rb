@@ -31,13 +31,14 @@ module MobmeSupport::CoreExtensions
       }
 
       options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
-
       @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + '/msisdn_formats.yml')
       msisdn_format = @@msdn_format_data[options_hash[:country]]
-
       msisdn = self.strip
-      if msisdn.match(msisdn_format['regexp'])
-        local_segment = msisdn[-(msisdn_format['local_digits'])..-1]
+      match_data = msisdn.match msisdn_format['regexp']
+
+      if match_data
+        local_segment = match_data[:local]
+
         case options_hash[:format]
           when 'local'
             local_segment
@@ -47,6 +48,8 @@ module MobmeSupport::CoreExtensions
             "+#{msisdn_format['country_code']}#{local_segment}"
           when 'international'
             "#{msisdn_format['international_prefix']}#{msisdn_format['country_code']}#{local_segment}"
+          else
+            raise "Invalid :format value - must be one of 'local', 'country', 'plus_country', or 'international'."
         end
       else
         nil
