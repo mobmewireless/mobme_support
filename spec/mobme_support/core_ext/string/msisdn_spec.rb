@@ -63,8 +63,11 @@ module MobmeSupport
         end
       end
 
-      context 'when passed custom options' do
-        pending
+      context 'when passed custom country' do
+        it 'validates whether MSISDN belongs to specified country' do
+          '00358401234567'.msisdn?(country: 'FI').should == true
+          '+358401234567'.msisdn?('country' => 'IS').should == false
+        end
       end
     end
   end
