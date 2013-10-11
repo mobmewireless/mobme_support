@@ -24,11 +24,11 @@ module MobmeSupport::CoreExtensions
     # @option options_hash [String] :format ('local') Either 'local', 'international', 'country', 'plus_country'.
     # @return [String, nil] Validated MSISDN, or nil.
     # @example Convert to an international format.
-    #   "31234567".msisdn(:country => "BH", :format => 'international')
-    #   "0097331234567"
+    #   '31234567'.msisdn(country: 'BH', format: 'international')
+    #   >> '0097331234567'
     # @example Convert to a 10 digit mobile number.
-    #   "+919846819033".msisdn(:format => 'local')
-    #   "9846819033"
+    #   '+919846819033'.msisdn(format: 'local')
+    #   >> '9846819033'
     def msisdn(options_hash = {})
       options_hash = options_hash.with_indifferent_access.reverse_merge(
         country: 'IN',
@@ -65,11 +65,11 @@ module MobmeSupport::CoreExtensions
     # @option options_hash [String] :country ('IN') The ISO 3166 code for the MSISDN's country.
     # @return [Boolean] True if string is a valid MSISDN. False, otherwise.
     # @example Validate an Indian MSISDN.
-    #   "9846819033".msisdn?
-    #   true
+    #   '9846819033'.msisdn?
+    #   >> true
     # @example Validate an non-Indian MSISDN.
-    #   "+919846819033".msisdn?(:country => 'CA')
-    #   false
+    #   '+919846819033'.msisdn?(country: 'CA')
+    #   >> false
     def msisdn?(options_hash = {})
       options_hash = options_hash.with_indifferent_access.reverse_merge(
         country: 'IN',

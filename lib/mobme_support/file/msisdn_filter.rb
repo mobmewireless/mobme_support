@@ -17,13 +17,13 @@ module MobmeSupport::FileOperations
       # @return [Array] Array of valid MSISDN-s in requested format.
       # @example MSISDN filtration on a file.
       #   MobME::Infrastructure::Utilities::FileOperations::MSISDNFilter.filter('/absolute/path/to/file')
-      #   >> ["9876543210", "9876543211", "9876543212", ... ]
-      #   MobME::Infrastructure::Utilities::FileOperations::MSISDNFilter.filter('/absolute/path/to/file', :format => "plus_country")
-      #   >> ["+919876543210", "+919876543211", "+919876543212", ... ]
+      #   >> ['9876543210', '9876543211', '9876543212', ... ]
+      #   MobME::Infrastructure::Utilities::FileOperations::MSISDNFilter.filter('/absolute/path/to/file', format: 'plus_country')
+      #   >> ['+919876543210', '+919876543211', '+919876543212', ... ]
       def filter(file_path, options_hash={})
         options_hash = options_hash.with_indifferent_access.reverse_merge(
-          :country => 'IN',
-          :format => 'local'
+          country: 'IN',
+          format: 'local'
         )
 
         input_file_contents = get_file_contents(file_path)
