@@ -74,14 +74,7 @@ module MobmeSupport::CoreExtensions
     #   '+919846819033'.msisdn?(country: 'CA')
     #   >> false
     def msisdn?(options_hash = {})
-      options_hash = options_hash.with_indifferent_access.reverse_merge(
-        country: 'IN',
-        format: 'local'
-      )
-
-      msisdn_format = MOBME_SUPPORT_MSISDN_FORMATS[options_hash[:country]]
-
-      !(self =~ msisdn_format['regexp']).nil?
+      !(self.msisdn(options_hash).eql? nil)
     end
   end
 end
