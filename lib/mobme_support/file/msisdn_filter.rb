@@ -43,22 +43,6 @@ module MobmeSupport::FileOperations
         input_file.close
         input_file_contents.split("\n")
       end
-
-      # Returns cached settings, if possible. Otherwise loads them from file.
-      def settings
-        return @settings_hash unless @settings_hash.nil?
-
-        settings_file = File.open(File.dirname(File.expand_path(__FILE__)) + '/../core_ext/string/msisdn_formats.yml', 'r')
-        settings_hash = YAML.load(settings_file)
-        settings_file.close
-        @settings_hash = settings_hash
-        settings_hash
-      end
-
-      # Returns regular expression for MSISDN in specified country.
-      def pattern(options_hash)
-        settings[options_hash[:country]]['regexp']
-      end
     end
   end
 end
