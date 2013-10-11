@@ -1,14 +1,3 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gemspec
-
-group :osx do
-  gem "growl"
-  gem 'rb-fsevent'
-end
-
-group :linux do
-  gem "rb-inotify"
-  gem "libnotify"
-end
-
