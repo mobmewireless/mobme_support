@@ -9,16 +9,16 @@ module MobmeSupport::CoreExtensions
     # @return [String, nil] Validated MSISDN, or nil
     # @example Validate a URL without scheme
     #   "google.com".url
-    #   "http://google.com"
+    #   >> "http://google.com"
     # @example Validate a URL with server IP
     #   "https://123.234.123.234/path/to/item".url
-    #   "https://123.234.123.234/path/to/item"
+    #   >> "https://123.234.123.234/path/to/item"
     # @example Validate a file:// URL
     #   "file:///absolute/path/to/file".url
-    #   "file:///absolute/path/to/file"
+    #   >> "file:///absolute/path/to/file"
     # @example Validate a scp:// URL
     #   "scp://user@server:/path/to/resource".url
-    #   "scp://user@server:/path/to/resource"
+    #   >> "scp://user@server:/path/to/resource"
     def url
       possible_url = self.strip
       reg = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
@@ -72,13 +72,13 @@ module MobmeSupport::CoreExtensions
     # @return [Boolean] True if string is a valid URL. False, otherwise
     # @example URL without scheme
     #   "google.com".url?
-    #   true
+    #   >> true
     # @example URL with invalid scheme
     #   "foobar://123.234.123.234/path/to/item".url
-    #   false
+    #   >> false
     # @example file:// path with invalid characters
     #   "file:///p@th/w!th/!nval!d/ch@r@cters".url
-    #   false
+    #   >> false
     def url?
       url ? true : false
     end
