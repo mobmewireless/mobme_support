@@ -5,42 +5,43 @@
 #   international_prefix: "International Prefix"
 
 TR:
-  regexp: !ruby/regexp '/^(\+|00)?(90)?((2|3|4|5|8|9)[0-9]{10})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(90)?(?<local>(2|3|4|5|8|9)[0-9]{10})$/'
   country_code: "90"
-  local_digits: 10
   international_prefix: "00"
 IN:
-  regexp: !ruby/regexp '/^(\+|00)?(91)?((9|8|7)[0-9]{9})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(91)?(?<local>(9|8|7)[0-9]{9})$/'
   country_code: "91"
-  local_digits: 10
   international_prefix: "00"
 PK:
-  regexp: !ruby/regexp '/^(\+|00)?(91)?((3)[0-9]{8})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(91)?(?<local>(3)[0-9]{8})$/'
   country_code: "92"
-  local_digits: 8
   international_prefix: "00"
 AF:
-  regexp: !ruby/regexp '/^(\+|00)?(93)?((7)[0-9]{8})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(93)?(?<local>(7)[0-9]{8})$/'
   country_code: "92"
-  local_digits: 9
   international_prefix: "00"
 LK:
-  regexp: !ruby/regexp '/^(\+|00)?(94)?0?((7)[0-9]{8})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(94)?0?(?<local>(7)[0-9]{8})$/'
   country_code: "94"
-  local_digits: 10
   international_prefix: "00"
 BH:
-  regexp: !ruby/regexp '/^(\+|00)?(973)?((3|6)[0-9]{7})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(973)?(?<local>(3|6)[0-9]{7})$/'
   country_code: "973"
-  local_digits: 8
   international_prefix: "00"
 CA:
-  regexp: !ruby/regexp '/^(\+|011)?(1)?(([2-9][0-9]{2}){2}[0-9]{4})$/'
+  regexp: !ruby/regexp '/^(\+|011)?(1)?(?<local>([2-9][0-9]{2}){2}[0-9]{4})$/'
   country_code: "1"
-  local_digits: 10
   international_prefix: "011"
 AE:
-  regexp: !ruby/regexp '/^(\+|00)?(971)?(5(0|5|6)[0-9]{7})$/'
+  regexp: !ruby/regexp '/^(\+|00)?(971)?(?<local>5(0|5|6)[0-9]{7})$/'
   country_code: "971"
   local_digits: 9
+  international_prefix: "00"
+FI:
+  regexp: !ruby/regexp '/^(\+|00)?(358)?(?<local>(4|5)[0-9]{8})$/'
+  country_code: "358"
+  international_prefix: "00"
+IS:
+  regexp: !ruby/regexp '/^(\+|00)?(354)?(?<local>(6|7|8)[0-9]{6})$/'
+  country_code: "354"
   international_prefix: "00"

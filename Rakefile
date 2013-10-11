@@ -1,32 +1,22 @@
 require 'rspec/core/rake_task'
-require "rake/tasklib"
-require "flog"
+require 'rake/tasklib'
+require 'ci/reporter/rake/rspec'
 require 'yard'
 require 'yard/rake/yardoc_task'
 
-RSpec::Core::RakeTask.new(:spec)
+RSpec::Core::RakeTask.new(spec: %w(ci:setup:rspec)) do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+end
 
-task :default => :spec
+task default: :spec
 
-desc "Analyze for code complexity"
-task :flog do
-  flog = Flog.new
-  flog.flog [ "lib" ]
-  threshold = 10
-
-  bad_methods = flog.totals.select do | name, score |
-    name != "main#none" && score > threshold
-  end
-  bad_methods.sort do | a, b |
-    a[ 1 ] <=> b[ 1 ]
-  end.reverse.each do | name, score |
-    puts "%8.1f: %s" % [ score, name ]
-  end
-  unless bad_methods.empty?
-    raise "#{ bad_methods.size } methods have a flog complexity > #{ threshold }"
+desc 'Analyze for code complexity with metric_fu'
+task :metrics do
+  if system 'bundle exec metric_fu -r'
+    puts "\nOpen up 'tmp/metric_fu/output/index.html' in your browser to see results."
   end
 end
 
 YARD::Rake::YardocTask.new(:yard) do |y|
-  y.options = ["--output-dir", "yardoc"]
+  y.options = %w(--output-dir yardoc)
 end
