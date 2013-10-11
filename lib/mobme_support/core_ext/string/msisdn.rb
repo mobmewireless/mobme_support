@@ -36,6 +36,9 @@ module MobmeSupport::CoreExtensions
       )
 
       msisdn_format = MOBME_SUPPORT_MSISDN_FORMATS[options_hash[:country]]
+
+      raise "Invalid :country value - must be one of #{MOBME_SUPPORT_MSISDN_FORMATS.keys.join ', '}." if msisdn_format.nil?
+
       msisdn = self.strip
       match_data = msisdn.match msisdn_format['regexp']
 
