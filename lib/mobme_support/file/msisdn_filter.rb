@@ -21,11 +21,10 @@ module MobmeSupport::FileOperations
       #   MobME::Infrastructure::Utilities::FileOperations::MSISDNFilter.filter('/absolute/path/to/file', :format => "plus_country")
       #   >> ["+919876543210", "+919876543211", "+919876543212", ... ]
       def filter(file_path, options_hash={})
-        options_hash.deep_symbolize_keys!
-        options_hash.reverse_merge!({
+        options_hash = options_hash.with_indifferent_access.reverse_merge(
           :country => 'IN',
           :format => 'local'
-        })
+        )
 
         input_file_contents = get_file_contents(file_path)
 

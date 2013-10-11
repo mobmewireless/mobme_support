@@ -4,6 +4,7 @@ require 'yaml'
 # Gems
 require 'active_support/core_ext/hash/keys'
 require 'active_support/core_ext/hash/reverse_merge'
+require 'active_support/core_ext/hash/indifferent_access'
 
 # Local
 require_relative '../../version'
@@ -25,12 +26,11 @@ module MobmeSupport::CoreExtensions
     #   "+919846819033".msisdn(:format => 'local')
     #   "9846819033"
     def msisdn(options_hash = {})
-      default_options = {
-        :country => 'IN',
-        :format => 'local'
-      }
+      options_hash = options_hash.with_indifferent_access.reverse_merge(
+        country: 'IN',
+        format: 'local'
+      )
 
-      options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
       @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + '/msisdn_formats.yml')
       msisdn_format = @@msdn_format_data[options_hash[:country]]
       msisdn = self.strip
