@@ -9,7 +9,11 @@ require 'active_support/core_ext/hash/indifferent_access'
 # Local
 require_relative '../../version'
 
+# Load MSISDN formats into a constant.
+MOBME_SUPPORT_MSISDN_FORMATS = YAML.load_file(File.dirname(__FILE__) + '/msisdn_formats.yml')
+
 module MobmeSupport::CoreExtensions
+
   # String extension, which allows MSISDN validation.
   module MSISDN
 
@@ -31,8 +35,7 @@ module MobmeSupport::CoreExtensions
         format: 'local'
       )
 
-      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + '/msisdn_formats.yml')
-      msisdn_format = @@msdn_format_data[options_hash[:country]]
+      msisdn_format = MOBME_SUPPORT_MSISDN_FORMATS[options_hash[:country]]
       msisdn = self.strip
       match_data = msisdn.match msisdn_format['regexp']
 
@@ -68,15 +71,14 @@ module MobmeSupport::CoreExtensions
     #   "+919846819033".msisdn?(:country => 'CA')
     #   false
     def msisdn?(options_hash = {})
-      default_options = {
-          :country => 'IN',
-          :format => 'local'
-      }
-      options_hash = options_hash.symbolize_keys.reverse_merge(default_options)
-      @@msdn_format_data ||= YAML.load_file(File.dirname(__FILE__) + '/msisdn_formats.yml')
-      msisdn_format = @@msdn_format_data[options_hash[:country]]
-     return false unless self =~ msisdn_format['regexp']
-      true
+      options_hash = options_hash.with_indifferent_access.reverse_merge(
+        country: 'IN',
+        format: 'local'
+      )
+
+      msisdn_format = MOBME_SUPPORT_MSISDN_FORMATS[options_hash[:country]]
+
+      !(self =~ msisdn_format['regexp']).nil?
     end
   end
 end
