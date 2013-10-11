@@ -16,9 +16,9 @@ module MobmeSupport::FileOperations
       # @option options_hash [String] :format ('local') Either 'local', 'international', 'country', 'plus_country'.
       # @return [Array] Array of valid MSISDN-s in requested format.
       # @example MSISDN filtration on a file.
-      #   MobME::Infrastructure::Utilities::FileOperations::MSISDNFilter.filter('/absolute/path/to/file')
+      #   MobmeSupport::FileOperations::MSISDNFilter.filter('/absolute/path/to/file')
       #   >> ['9876543210', '9876543211', '9876543212', ... ]
-      #   MobME::Infrastructure::Utilities::FileOperations::MSISDNFilter.filter('/absolute/path/to/file', format: 'plus_country')
+      #   MobmeSupport::FileOperations::MSISDNFilter.filter('/absolute/path/to/file', format: 'plus_country')
       #   >> ['+919876543210', '+919876543211', '+919876543212', ... ]
       def filter(file_path, options_hash={})
         options_hash = options_hash.with_indifferent_access.reverse_merge(
