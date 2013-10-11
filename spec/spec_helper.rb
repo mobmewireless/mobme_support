@@ -1,5 +1,7 @@
-require "simplecov"
-require "simplecov-rcov"
+require 'simplecov'
+require 'simplecov-rcov'
+require 'fakefs/safe'
+require 'fakefs/spec_helpers'
 
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 SimpleCov.start do
